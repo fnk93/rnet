@@ -4,6 +4,62 @@ from rnet import Cookie, Impersonate, ImpersonateOS
 
 
 @pytest.mark.asyncio
+@pytest.mark.flaky(reruns=3, reruns_delay=2)
+async def test_update_client_after_req():
+    """Updating client after a request is fine."""
+    client = rnet.Client(
+        verify=False,
+        impersonate=Impersonate.Firefox136,
+        impersonate_os=ImpersonateOS.MacOS,
+        proxies=[rnet.Proxy.all("http://127.0.0.1:8888")],
+    )
+    # client.update(
+    #     impersonate=Impersonate.Firefox136,
+    #     impersonate_os=ImpersonateOS.MacOS,
+    # )
+    resp = await client.get(
+        "https://api.ip.sb/ip",
+    )
+    assert resp.status == 200
+    client.update(
+        impersonate=Impersonate.Firefox136,
+        impersonate_os=ImpersonateOS.MacOS,
+    )
+    resp = await client.get(
+        "https://api.ip.sb/ip",
+    )
+    assert resp.status == 200
+
+
+@pytest.mark.asyncio
+@pytest.mark.flaky(reruns=3, reruns_delay=2)
+async def test_update_client():
+    """Updating client before a request currently overwrites the verify-option."""
+    client = rnet.Client(
+        verify=False,
+        impersonate=Impersonate.Firefox136,
+        impersonate_os=ImpersonateOS.MacOS,
+        proxies=[rnet.Proxy.all("http://127.0.0.1:8888")],
+    )
+    client.update(
+        impersonate=Impersonate.Firefox136,
+        impersonate_os=ImpersonateOS.MacOS,
+    )
+    resp = await client.get(
+        "https://api.ip.sb/ip",
+    )
+    assert resp.status == 200
+    client.update(
+        impersonate=Impersonate.Firefox136,
+        impersonate_os=ImpersonateOS.MacOS,
+    )
+    resp = await client.get(
+        "https://api.ip.sb/ip",
+    )
+    assert resp.status == 200
+
+
+@pytest.mark.asyncio
 @pytest.mark.flaky(reruns=1, reruns_delay=2)
 async def test_inherit_client():
     class SubClient(rnet.Client):
