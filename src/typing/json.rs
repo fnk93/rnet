@@ -1,5 +1,6 @@
 use indexmap::IndexMap;
 use pyo3::prelude::*;
+#[cfg(feature = "docs")]
 use pyo3_stub_gen::{PyStubType, TypeInfo};
 use serde::{Deserialize, Serialize};
 
@@ -15,8 +16,9 @@ pub enum Json {
     Array(Vec<Json>),
 }
 
+#[cfg(feature = "docs")]
 impl PyStubType for Json {
     fn type_output() -> TypeInfo {
-        TypeInfo::any()
+        TypeInfo::with_module("typing.Dict[str, typing.Any]", "typing".into())
     }
 }

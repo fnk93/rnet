@@ -144,6 +144,12 @@ The python documentation is automatically supported by [pyo3-stub-gen](https://g
 
 If you would like to submit your contribution, please open a [Pull Request](https://github.com/0x676e67/rnet/pulls).
 
+## Sponsors
+
+<a href="https://dashboard.capsolver.com/passport/register?inviteCode=y7CtB_a-3X6d" target="_blank"><img src="https://raw.githubusercontent.com/0x676e67/rnet/main/.github/assets/capsolver.jpg" height="47" width="149"></a>
+
+[CapSolver](https://www.capsolver.com/?utm_source=github&utm_medium=banner_repo&utm_campaign=rquest) uses AI-powered Auto Web Unblock to bypass Captchas for seamless data access. Fast, reliable, and cost-effective, it integrates with Colly, Puppeteer, and Playwright. 🎉 Use code **`RNET`** for a 6% bonus!
+
 ## License
 
 **rnet** © [0x676e67](https://github.com/0x676e67), Released under the [GPL-3.0](https://github.com/0x676e67/rnet/blob/main/LICENSE) License.
